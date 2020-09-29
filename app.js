@@ -6,6 +6,7 @@ var logger = require('morgan');
 const session= require('express-session');
 const facebookStrategy= require('passport-facebook').Strategy;
 const config = require('./bin/config');
+const User = require('./models/User')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -39,7 +40,7 @@ passport.use(new facebookStrategy({
   clientID:config.facebookAuth.clientID,
   clientSecret:config.facebookAuth.clientSecret,
   callbackURL:config.facebookAuth.callbackURL,
-  profileFields:['id','displayName','name','genre','picture.type']
+  // profileFields:['displayName','name','genre','picture.type']
 
 },(token,refreshToken,profile,cb)=>{
   console.log(profile)
